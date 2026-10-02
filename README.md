@@ -16,6 +16,7 @@ Current status of the scaffolded milestone:
 - Next.js App Router frontend scaffold added
 - Docker Compose development environment added
 - Alembic migration starter included
+- PostgreSQL reference documentation for materialized views and temp tables added
 
 ## Tech Stack
 
@@ -69,7 +70,9 @@ uwe-msc-ai-community/
 │   ├── schema.sql
 │   └── seed.sql
 ├── docs/
-│   └── SETUP.md
+│   ├── SETUP.md
+│   ├── postgres-materialized-views-quick-ref.md
+│   └── postgres-temp-tables-materialized-views.md
 ├── docker-compose.yml
 ├── .env.example
 ├── .gitignore
@@ -80,10 +83,10 @@ uwe-msc-ai-community/
 ## Documentation
 
 - docs/SETUP.md — development and run instructions
+- docs/postgres-materialized-views-quick-ref.md — quick-reference guide for CTEs, temp tables, and materialized views
+- docs/postgres-temp-tables-materialized-views.md — deeper PostgreSQL reference covering security-restricted operations and migration trade-offs
 - schema/schema.sql — PostgreSQL 18-compatible schema
 - schema/seed.sql — sensible demo seed data
-
-Additional technical documentation will be added as the platform evolves.
 
 ## Core Domain Areas
 
@@ -219,6 +222,7 @@ This PR introduces the initial project scaffold for the UWE MSc AI Community Pla
 - Alembic migration starter
 - Environment configuration templates
 - Setup documentation
+- PostgreSQL materialized-view quick-reference documentation
 
 ### Documentation
 
@@ -226,6 +230,7 @@ This PR introduces the initial project scaffold for the UWE MSc AI Community Pla
 - Added architecture overview
 - Added development workflow guidance
 - Documented roadmap and future milestones
+- Added PostgreSQL quick-reference material for temp tables and materialized views
 
 ### Future Work
 
