@@ -2,17 +2,9 @@
 
 A full-stack community platform for MSc Artificial Intelligence students, researchers, alumni, and industry professionals at UWE Bristol.
 
-This project brings together the core building blocks for a modern academic community:
-- user profiles
-- community discussions
-- events and networking
-- project showcases
-- resources and learning materials
-- mentorship support
-- publications and research highlights
-- notifications and community updates
+A modern community platform for MSc Artificial Intelligence students at UWE Bristol, designed to support collaboration, research sharing, networking, mentorship, project development, and lifelong academic engagement.
 
-The application is designed with a scalable architecture for future AI features such as semantic search, recommendations, and a community assistant.
+Built with FastAPI, PostgreSQL, Next.js, and Docker, the platform provides a scalable foundation for future AI-powered features such as semantic search, recommendations, and intelligent community assistance.
 
 ## Project Status
 
@@ -84,6 +76,14 @@ uwe-msc-ai-community/
 ├── README.md
 └── LICENSE
 ```
+
+## Documentation
+
+- docs/SETUP.md — development and run instructions
+- schema/schema.sql — PostgreSQL 18-compatible schema
+- schema/seed.sql — sensible demo seed data
+
+Additional technical documentation will be added as the platform evolves.
 
 ## Core Domain Areas
 
@@ -187,11 +187,66 @@ These pages are intentionally structured as a starting point and can be expanded
 - JWT secret and other env values are kept in .env and not committed to source control
 - no production credentials are included in the repository
 
+## PR-ready Changelog Template (use in PR descriptions)
+
+```
+## Summary
+
+This PR introduces the initial project scaffold for the UWE MSc AI Community Platform.
+
+### Added
+
+- FastAPI backend structure
+- Async SQLAlchemy setup
+- PostgreSQL schema and seed data
+- Core domain models:
+  - Users
+  - Profiles
+  - Discussions
+  - Comments
+  - Events
+  - Projects
+  - Resources
+  - Publications
+  - Mentorships
+  - Notifications
+- Pydantic schemas
+- Service-layer architecture
+- API routing structure
+- JWT-ready authentication helpers
+- Next.js App Router frontend scaffold
+- Docker Compose local development environment
+- Alembic migration starter
+- Environment configuration templates
+- Setup documentation
+
+### Documentation
+
+- Added repository setup instructions
+- Added architecture overview
+- Added development workflow guidance
+- Documented roadmap and future milestones
+
+### Future Work
+
+- Full CRUD validation
+- Authentication and RBAC
+- Frontend data integration
+- Search and filtering
+- Advanced dashboards
+- AI-assisted community features
+- Cloud deployment
+```
+
+## Suggested GitHub repository description
+
+> AI-powered community platform for UWE MSc Artificial Intelligence students featuring discussions, projects, events, resources, mentorship, publications, and future semantic-search capabilities.
+
 ## Roadmap
 
 ### Next Milestones
 1. complete CRUD validation and service consistency across all models
-2. add stronger role-based access and authentication flows
+2. add stronger role-based access and authentication flows (JWT)
 3. add real frontend data fetching and forms
 4. add Alembic migration execution for production-ready database management
 5. add richer dashboards and search/filtering
