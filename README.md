@@ -2,23 +2,24 @@
 
 A full-stack community platform for MSc Artificial Intelligence students, researchers, alumni, and industry professionals at UWE Bristol.
 
-A modern community platform for MSc Artificial Intelligence students at UWE Bristol, designed to support collaboration, research sharing, networking, mentorship, project development, and lifelong academic engagement.
+The platform is designed to support collaboration, research sharing, mentorship, project development, and lifelong academic engagement within the UWE AI community. It combines a FastAPI backend, PostgreSQL data model, Next.js frontend, and Docker-based local development environment to provide a scalable MVP foundation for future AI-powered features.
 
-Built with FastAPI, PostgreSQL, Next.js, and Docker, the platform provides a scalable foundation for future AI-powered features such as semantic search, recommendations, and intelligent community assistance.
+Built with FastAPI, PostgreSQL, Next.js, and Docker, the project provides a strong base for future capabilities such as semantic search, recommendations, intelligent community assistance, and richer AI-driven engagement workflows.
 
-## Project Status
+## Current status
 
-Current status of the scaffolded milestone:
-- PostgreSQL 18-compatible schema created
-- SQLAlchemy async models and Pydantic schemas added
-- FastAPI backend routes for core domain entities implemented
-- JWT-ready auth helpers and password hashing included
-- Next.js App Router frontend scaffold added
-- Docker Compose development environment added
-- Alembic migration starter included
-- PostgreSQL reference documentation for materialized views and temp tables added
+The project is currently in a scaffolded MVP phase with the following in place:
 
-## Tech Stack
+- PostgreSQL schema and seed data
+- FastAPI backend scaffold with SQLAlchemy async support
+- Pydantic v2 data validation
+- JWT-ready authentication helpers
+- Next.js App Router frontend scaffold
+- Docker Compose local development setup
+- Alembic migration starter
+- PostgreSQL reference documentation for materialized views and temp tables
+
+## Tech stack
 
 ### Backend
 - Python 3.11
@@ -33,15 +34,15 @@ Current status of the scaffolded milestone:
 ### Frontend
 - Next.js App Router
 - TypeScript
-- Responsive page structure
+- Responsive UI structure
 - API-ready frontend layer
 
 ### Infrastructure
 - Docker Compose
 - PostgreSQL container
-- Development environment configuration via .env.example
+- Environment configuration via .env.example
 
-## Repository Structure
+## Repository structure
 
 ```text
 uwe-msc-ai-community/
@@ -77,20 +78,22 @@ uwe-msc-ai-community/
 ├── .env.example
 ├── .gitignore
 ├── README.md
-└── LICENSE
+├── LICENSE
+└── .github/
 ```
 
 ## Documentation
 
-- docs/SETUP.md — development and run instructions
+- docs/SETUP.md — local development and setup instructions
 - docs/postgres-materialized-views-quick-ref.md — quick-reference guide for CTEs, temp tables, and materialized views
 - docs/postgres-temp-tables-materialized-views.md — deeper PostgreSQL reference covering security-restricted operations and migration trade-offs
-- schema/schema.sql — PostgreSQL 18-compatible schema
-- schema/seed.sql — sensible demo seed data
+- schema/schema.sql — PostgreSQL database schema
+- schema/seed.sql — demo seed data
 
-## Core Domain Areas
+## Core domain areas
 
 The platform currently includes these core model groups:
+
 - users
 - profiles
 - discussions
@@ -102,38 +105,38 @@ The platform currently includes these core model groups:
 - mentorships
 - notifications
 
-This gives the platform a solid foundation for a future AI-enhanced community experience while keeping the MVP logically organised.
+This gives the project a solid foundation for a future AI-enhanced community experience while keeping the MVP logically structured and extensible.
 
-## Local Development Setup
+## Local development
 
-1. Clone the repository
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/Bilalabdulkadir/uwe-msc-ai-community.git
 cd uwe-msc-ai-community
 ```
 
-2. Copy environment variables
+2. Copy the environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Build and start the stack
+3. Build and start the stack:
 
 ```bash
 docker compose up --build
 ```
 
-4. Access the services
+4. Access the application:
 
 - Frontend: http://localhost:3000/
 - Backend: http://localhost:8000/
 - API docs: http://localhost:8000/docs
 
-## Database Setup
+## Database setup
 
-The schema is designed for PostgreSQL 18 compatibility and is intended to be compatible with a future pgEdge PostgreSQL 18 environment.
+The schema is designed for PostgreSQL 18 compatibility and is intended to remain compatible with a future pgEdge/PostgreSQL environment.
 
 To initialise the database manually:
 
@@ -141,11 +144,12 @@ To initialise the database manually:
 docker compose exec db psql -U uwe -d uwe_community -f /docker-entrypoint-initdb.d/schema.sql
 ```
 
-Or for a fresh local environment, use the schema file in the repo and run it with your preferred Postgres client.
+For a fresh local environment, you can also use the schema file in the repository with your preferred PostgreSQL client.
 
-## API Overview
+## API overview
 
 The backend exposes core endpoints for:
+
 - health checks
 - users
 - profiles
@@ -169,9 +173,10 @@ GET /api/resources/
 GET /api/discussions/
 ```
 
-## Frontend Pages
+## Frontend pages
 
 The scaffold includes initial pages for:
+
 - /
 - /dashboard
 - /community
@@ -182,17 +187,17 @@ The scaffold includes initial pages for:
 - /mentorship
 - /publications
 
-These pages are intentionally structured as a starting point and can be expanded with real data fetching and UI components.
+These pages are intentionally structured as a starting point and can be expanded with real data fetching and richer UI components.
 
-## Security Notes
+## Security notes
 
 - credentials are stored as hashed values
-- JWT secret and other env values are kept in .env and not committed to source control
+- JWT secrets and sensitive environment variables are kept in .env and not committed to source control
 - no production credentials are included in the repository
 
-## PR-ready Changelog Template (use in PR descriptions)
+## PR-ready changelog template
 
-```
+```markdown
 ## Summary
 
 This PR introduces the initial project scaffold for the UWE MSc AI Community Platform.
@@ -230,9 +235,9 @@ This PR introduces the initial project scaffold for the UWE MSc AI Community Pla
 - Added architecture overview
 - Added development workflow guidance
 - Documented roadmap and future milestones
-- Added PostgreSQL quick-reference material for temp tables and materialized views
+- Added PostgreSQL reference material for temp tables and materialized views
 
-### Future Work
+### Future work
 
 - Full CRUD validation
 - Authentication and RBAC
@@ -243,13 +248,13 @@ This PR introduces the initial project scaffold for the UWE MSc AI Community Pla
 - Cloud deployment
 ```
 
-## Suggested GitHub repository description
+## Suggested repository description
 
 > AI-powered community platform for UWE MSc Artificial Intelligence students featuring discussions, projects, events, resources, mentorship, publications, and future semantic-search capabilities.
 
 ## Roadmap
 
-### Next Milestones
+### Next milestones
 1. complete CRUD validation and service consistency across all models
 2. add stronger role-based access and authentication flows (JWT)
 3. add real frontend data fetching and forms
@@ -260,7 +265,7 @@ This PR introduces the initial project scaffold for the UWE MSc AI Community Pla
 
 ## Notes
 
-This repository is intentionally structured to support a scalable MVP and future AI-enabled platform features without prematurely hard-coding RAG or vector search logic.
+This repository is intentionally structured to support a scalable MVP and future AI-enabled platform features without prematurely hard-coding RAG or vector-search logic.
 
 ---
 
