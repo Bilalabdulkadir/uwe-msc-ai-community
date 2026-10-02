@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: uwe
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: uwe_community
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://uwe:password@db:5432/uwe_community
+    ports:
+      - '8000:8000'
+
+  web:
+    build: ./web
+    depends_on:
+      - backend
+    ports:
+      - '3000:3000'
+
+volumes:
+  db_data:
