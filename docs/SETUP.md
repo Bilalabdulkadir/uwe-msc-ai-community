@@ -1,29 +1,62 @@
-# Project setup & run instructions
+# UWE MSc AI Community Platform
 
-This repository now contains a scaffold for the UWE MSc AI Community Platform.
+A full-stack AI-powered community platform for MSc Artificial Intelligence students, researchers, alumni, and industry professionals.
 
-Quick start (development, from repository root):
+## Current status
 
-1. Copy example environment variables
+- PostgreSQL schema and seed data are in place
+- FastAPI backend scaffolded with SQLAlchemy async and Pydantic v2
+- Next.js frontend scaffolded with App Router
+- Docker Compose setup provided for local development
+
+## Architecture
+
+### Frontend
+- Next.js App Router
+- TypeScript
+- Responsive UI structure
+
+### Backend
+- FastAPI
+- SQLAlchemy 2.x async
+- Pydantic v2
+- PostgreSQL 18-compatible schema
+- JWT-ready auth helpers
+
+### Database
+- PostgreSQL 18-compatible
+- Schema is designed for future pgEdge / pgvector integration
+
+## Run locally
+
+1. Copy environment file:
    cp .env.example .env
 
-2. Start services with Docker Compose
+2. Build and run the stack:
    docker compose up --build
 
-3. Initialize the database schema and seed data (once the DB is ready):
-   # run these after db service is accepting connections
-   docker compose exec -T backend bash -lc "psql $DATABASE_URL -f /workdir/schema/schema.sql"
-   # or run via psql from your host
+3. Database initialization:
+   docker compose exec db psql -U uwe -d uwe_community -f /docker-entrypoint-initdb.d/schema.sql
 
-Backend API:
-- http://localhost:8000/
-- Health: http://localhost:8000/health
-- Users: http://localhost:8000/api/users
+4. Access services:
+   - Frontend: http://localhost:3000/
+   - Backend: http://localhost:8000/
+   - API docs: http://localhost:8000/docs
 
-Frontend:
-- http://localhost:3000/
+## Core API routes
 
-Development notes
-- Backend uses FastAPI + SQLAlchemy (async) + asyncpg
-- Use Alembic for migrations (see backend/README or Alembic docs)
+- GET /health
+- GET /api/users/
+- GET /api/profiles/
+- GET /api/discussions/
+- GET /api/events/
+- GET /api/projects/
+- GET /api/resources/
+- GET /api/publications/
+- GET /api/mentorships/
+- GET /api/notifications/
 
+## Notes
+
+- The project intentionally keeps the data model extensible for future AI/RAG features.
+- Secrets should be managed with environment variables rather than committed to source control.

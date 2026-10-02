@@ -1,13 +1,24 @@
-from pydantic import BaseModel, EmailStr
-from typing import Optional
-from datetime import datetime
 from uuid import UUID
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-class UserRead(BaseModel):
-    id: UUID
-    username: str
+
+class UserBase(BaseModel):
     email: EmailStr
-    role: str
-    created_at: datetime
+    role: str = "student"
 
-    model_config = {"json_schema_extra": {"example": {"username": "alice", "email": "alice@example.com", "role": "student"}}}
+
+class UserCreate(UserBase):
+    password: str = Field(..., min_length=8)
+
+
+class UserResponse(UserBase):
+    id: UUID
+    created_at: str | None = None
+    updated_at: str | None = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str

@@ -1,10 +1,21 @@
-from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
 from uuid import UUID
+from pydantic import BaseModel, ConfigDict
 
-class ResourceRead(BaseModel):
-    id: UUID
+
+class ResourceBase(BaseModel):
     title: str
-    url: Optional[str]
-    created_at: datetime
+    description: str | None = None
+    resource_type: str = "article"
+    url: str
+
+
+class ResourceCreate(ResourceBase):
+    pass
+
+
+class ResourceResponse(ResourceBase):
+    id: UUID
+    created_at: str | None = None
+    updated_at: str | None = None
+
+    model_config = ConfigDict(from_attributes=True)

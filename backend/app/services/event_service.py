@@ -1,17 +1,16 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models.models import Event
+from backend.app.models.models import Event
 
-async def get_events(session: AsyncSession):
-    q = await session.execute(select(Event).limit(50))
-    return [
-        {
-            "id": e.id,
-            "title": e.title,
-            "description": e.description,
-            "starts_at": e.starts_at,
-            "ends_at": e.ends_at,
-            "created_at": e.created_at,
-        }
-        for e in q.scalars().all()
-    ]
+
+async def get_events(db: AsyncSession):
+    result = await db.execute(select(Event).order_by(Event.start_date.asc()).limit(50))
+    return result.scalars().all()
+
+
+async def create_event(db: AsyncSession, payload: dict):
+    event = Event(**payload)
+    db.add(event)
+    await db.commit()
+    await db.refresh(event)
+    return event

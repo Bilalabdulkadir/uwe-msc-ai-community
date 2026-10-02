@@ -1,11 +1,21 @@
-from pydantic import BaseModel
-from typing import Optional
-from datetime import datetime
 from uuid import UUID
+from pydantic import BaseModel, ConfigDict
 
-class ProjectRead(BaseModel):
-    id: UUID
+
+class ProjectBase(BaseModel):
     title: str
-    description: Optional[str]
-    owner_id: Optional[UUID]
-    created_at: datetime
+    description: str | None = None
+    github_url: str | None = None
+
+
+class ProjectCreate(ProjectBase):
+    pass
+
+
+class ProjectResponse(ProjectBase):
+    id: UUID
+    owner_id: UUID | None = None
+    created_at: str | None = None
+    updated_at: str | None = None
+
+    model_config = ConfigDict(from_attributes=True)

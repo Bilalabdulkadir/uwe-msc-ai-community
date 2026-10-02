@@ -1,16 +1,16 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models.models import Project
+from backend.app.models.models import Project
 
-async def get_projects(session: AsyncSession):
-    q = await session.execute(select(Project).limit(50))
-    return [
-        {
-            "id": p.id,
-            "title": p.title,
-            "description": p.description,
-            "owner_id": p.owner_id,
-            "created_at": p.created_at,
-        }
-        for p in q.scalars().all()
-    ]
+
+async def get_projects(db: AsyncSession):
+    result = await db.execute(select(Project).order_by(Project.created_at.desc()).limit(50))
+    return result.scalars().all()
+
+
+async def create_project(db: AsyncSession, payload: dict, owner_id):
+    project = Project(**payload, owner_id=owner_id)
+    db.add(project)
+    await db.commit()
+    await db.refresh(project)
+    return project

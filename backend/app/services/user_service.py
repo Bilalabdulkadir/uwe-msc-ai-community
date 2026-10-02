@@ -1,17 +1,16 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models.models import User
+from backend.app.models.models import User
 
-async def get_users(session: AsyncSession):
-    q = await session.execute(select(User).limit(50))
-    users = q.scalars().all()
-    results = []
-    for u in users:
-        results.append({
-            "id": u.id,
-            "username": u.username,
-            "email": u.email,
-            "role": u.role.value if hasattr(u.role, 'value') else str(u.role),
-            "created_at": u.created_at,
-        })
-    return results
+
+async def get_users(db: AsyncSession):
+    result = await db.execute(select(User).order_by(User.created_at.desc()).limit(50))
+    return result.scalars().all()
+
+
+async def create_user(db: AsyncSession, user_data: dict):
+    user = User(**user_data)
+    db.add(user)
+    await db.commit()
+    await db.refresh(user)
+    return user
