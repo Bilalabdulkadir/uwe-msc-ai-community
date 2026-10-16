@@ -1,0 +1,15 @@
+{
+  "name": "@uwe-student-projects/green-digital-ethiopia",
+  "version": "1.0.0",
+  "description": "Independent research and analytical platform for sustainable digital infrastructure, green ICT policy, energy efficiency, ICT lifecycle management, and e-waste governance in Ethiopia.",
+  "author": "Bilal Muhammed",
+  "license": "MIT",
+  "keywords": [
+    "ethiopia",
+    "sustainability",
+    "green-ict",
+    "digital-transformation",
+    "e-waste",
+    "research"
+  ]
+}
